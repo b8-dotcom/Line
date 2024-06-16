@@ -1,0 +1,5 @@
+flask
+line-bot-sdk
+chatterbot
+chatterbot_corpus
+gunicorn
