@@ -47,8 +47,13 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     user_message = event.message.text
+<<<<<<< HEAD
     
     if user_message == '你好':
+=======
+
+if user_message == '你好':
+>>>>>>> 37ede5d72b9263a4ac305317fd769225e71e40c8
         reply_message = '你好！'
     elif user_message == '再見':
         reply_message = '再見，祝你有個美好的一天！'
