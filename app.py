@@ -5,11 +5,6 @@ Created on Sun Jun 16 14:33:14 2024
 @author: 88693
 """
 
-pip install flask   
-pip install line-bot-sdk
-pip install chatterbot
-pip install chatterbot_corpus
-
 from flask import Flask, request, abort
 from linebot import LineBotApi, WebhookHandler
 from linebot.exceptions import InvalidSignatureError
