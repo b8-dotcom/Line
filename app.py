@@ -47,29 +47,19 @@ def callback():
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
     user_message = event.message.text
-<<<<<<< HEAD
-    
-    if user_message == '你好':
-=======
 
-if user_message == '你好':
->>>>>>> 37ede5d72b9263a4ac305317fd769225e71e40c8
+    if user_message == '你好':
         reply_message = '你好！'
     elif user_message == '再見':
         reply_message = '再見，祝你有個美好的一天！'
     else:
-        reply_message = '我不太明白你的意思。'
+        bot_response = chatbot.get_response(user_message)
+        reply_message = str(bot_response)
 
-    bot_response = chatbot.get_response(user_message)
     line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text=str(bot_response))
+        TextSendMessage(text=reply_message)
     )
 
 if __name__ == "__main__":
     app.run()
-
-
-
-
-
