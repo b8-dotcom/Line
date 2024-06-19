@@ -8,6 +8,8 @@ flask = "*"
 line-bot-sdk = "*"
 chatterbot = "*"
 chatterbot-corpus = "*"
+pytz = "*"
+sqlalchemy = "*"
 
 [dev-packages]
 
