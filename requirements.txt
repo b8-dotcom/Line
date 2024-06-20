@@ -1,46 +1,57 @@
+################################################################################
+# This requirements file has been automatically generated from `Pipfile` with
+# `pipenv-to-requirements`
+#
+#
+# This has been done to maintain backward compatibility with tools and services
+# that do not support `Pipfile` yet.
+#
+# Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
+# `Pipfile.lock` and then regenerate `requirements*.txt`.
+################################################################################
+
 aenum==3.1.15
-aiohttp==3.9.5
-aiosignal==1.3.1
-annotated-types==0.7.0
+aiohttp==3.9.5 ; python_version >= '3.8'
+aiosignal==1.3.1 ; python_version >= '3.7'
+annotated-types==0.7.0 ; python_version >= '3.8'
 appdirs==1.4.4
-attrs==23.2.0
-blinker==1.8.2
-certifi==2024.6.2
-charset-normalizer==3.3.2
-ChatterBot==1.0.4
+attrs==23.2.0 ; python_version >= '3.7'
+blinker==1.8.2 ; python_version >= '3.8'
+certifi==2024.6.2 ; python_version >= '3.6'
+charset-normalizer==3.3.2 ; python_full_version >= '3.7.0'
 chatterbot-corpus==1.2.0
-click==8.1.7
-colorama==0.4.6
-Deprecated==1.2.14
-Flask==3.0.3
-flexcache==0.3
-flexparser==0.3.1
-frozenlist==1.4.1
-future==1.0.0
-idna==3.7
-itsdangerous==2.2.0
-Jinja2==3.1.4
-joblib==1.4.2
-line-bot-sdk==3.11.0
-MarkupSafe==2.1.5
+chatterbot==1.0.4
+click==8.1.7 ; python_version >= '3.7'
+colorama==0.4.6 ; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3, 3.4, 3.5, 3.6'
+deprecated==1.2.14 ; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+flask==3.0.3 ; python_version >= '3.8'
+flexcache==0.3 ; python_version >= '3.9'
+flexparser==0.3.1 ; python_version >= '3.9'
+frozenlist==1.4.1 ; python_version >= '3.8'
+future==1.0.0 ; python_version >= '2.6' and python_version not in '3.0, 3.1, 3.2, 3.3'
+idna==3.7 ; python_version >= '3.5'
+itsdangerous==2.2.0 ; python_version >= '3.8'
+jinja2==3.1.4 ; python_version >= '3.7'
+joblib==1.4.2 ; python_version >= '3.8'
+line-bot-sdk==3.11.0 ; python_full_version >= '3.8.0'
+markupsafe==2.1.5 ; python_version >= '3.7'
 mathparse==0.1.2
-multidict==6.0.5
-nltk==3.8.1
-Pint==0.24
-pydantic==2.7.4
-pydantic_core==2.18.4
+multidict==6.0.5 ; python_version >= '3.7'
+nltk==3.8.1 ; python_version >= '3.7'
+pint==0.24 ; python_version >= '3.10'
+pydantic-core==2.18.4 ; python_version >= '3.8'
+pydantic==2.7.4 ; python_version >= '3.8'
 pymongo==3.13.0
-python-dateutil==2.7.5
-python==3.12.4
+python-dateutil==2.7.5 ; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
 pytz==2024.1
-PyYAML==3.13
-regex==2024.5.15
-requests==2.31.0
-six==1.16.0
-SQLAlchemy==1.2.19
-tqdm==4.66.4
-typing_extensions==4.12.2
-urllib3==2.2.2
-Werkzeug==3.0.3
-wrapt==1.16.0
-yarl==1.9.4
+pyyaml==3.13
+regex==2024.5.15 ; python_version >= '3.8'
+requests==2.31.0 ; python_version >= '3.7'
+six==1.16.0 ; python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'
+sqlalchemy==1.2.19
+tqdm==4.66.4 ; python_version >= '3.7'
+typing-extensions==4.12.2 ; python_version >= '3.8'
+urllib3==2.2.2 ; python_version >= '3.8'
+werkzeug==3.0.3 ; python_version >= '3.8'
+wrapt==1.16.0 ; python_version >= '3.6'
+yarl==1.9.4 ; python_version >= '3.7'
