@@ -1,0 +1,19 @@
+[33m4da3816[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mremove-slug-migration[m[33m, [m[1;32mmain[m[33m)[m Update dependencies and lock file
+[33md291734[m Add requirements.txt
+[33m8fad43f[m Update buildpacks
+[33m6bb8341[m[33m ([m[1;31morigin/main[m[33m)[m Add Pipfile and lock file for dependencies
+[33m0a0c35a[m Resolve conflicts
+[33ma284b96[m Ready for deployment
+[33m66652d5[m Add app.py file
+[33m3f5be89[m Prepare for Heroku deployment
+[33mdbb4402[m Update app.py
+[33m5b5dcbd[m[33m ([m[1;32mtemp-branch[m[33m)[m Fix bot handling logic
+[33m55fa7f3[m Add GitHub Actions workflow for CI/CD
+[33m4987396[m Update app.py with new changes
+[33mc2b0f95[m app.py
+[33m3d5e743[m 修復 app.py 中的問題
+[33m37ede5d[m Update app.py
+[33m284c7c6[m Resolved merge conflicts between local and remote main
+[33m400d70e[m Create deploy.yml
+[33mb0da4b3[m Initial commit
+[33mc951e6d[m Initial commit
