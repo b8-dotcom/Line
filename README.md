@@ -397,3 +397,4 @@ line_bot_api.reply_message(event.reply_token, message)
 # Line
 Line官方帳號使用
 >>>>>>> 400d70e4d056c01f30d1b54fd8cae70a6df60fd6
+"# line-bot" 
