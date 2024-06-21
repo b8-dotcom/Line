@@ -8,23 +8,17 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout Repository
+      - name: Checkout repository
         uses: actions/checkout@v2
-
+      
       - name: Set up Heroku CLI
-        uses: heroku/actions/setup-cli@v7
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          heroku-api-key: ${{ secrets.HEROKU_API_KEY }}
-
-      - name: Login to Heroku
-        run: heroku auth:token
-
+          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+      
       - name: Deploy to Heroku
-        env:
-          LINE_CHANNEL_ID: ${{ secrets.LINE_CHANNEL_ID }}
-          LINE_CHANNEL_SECRET: ${{ secrets.LINE_CHANNEL_SECRET }}
-          LINE_ACCESS_TOKEN: ${{ secrets.LINE_ACCESS_TOKEN }}
         run: |
+          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
           git push heroku main
