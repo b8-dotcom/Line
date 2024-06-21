@@ -1,5 +1,7 @@
 web: python app.py
 web: gunicorn yourapp.wsgi
 web: node index.js
+web: gunicorn app:app
+
 
 

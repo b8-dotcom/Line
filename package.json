@@ -4,13 +4,8 @@
   "description": "Line Bot 教學",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "echo \"Build command here\"",
     "start": "node index.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.19.2",
     "@line/bot-sdk": "^7.3.0"
