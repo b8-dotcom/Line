@@ -3,7 +3,7 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - main
+      - main  # 修改為您要部署的分支名稱，例如 main 或 master
 
 jobs:
   deploy:
@@ -11,14 +11,22 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-      
-      - name: Set up Heroku CLI
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Deploy to Heroku
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-      
-      - name: Deploy to Heroku
-        run: |
-          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-          git push heroku main
+          branch: main  # 修改為您要部署的分支名稱，例如 main 或 master
+          dontuseforce: false  # 是否使用 --force 強制推送，建議設置為 false
+          dontautocreate: false
+          usedocker: false
+          docker_heroku_process_type: web
+          delay: 0
+          RollbackOnHealthCheckFailed: false
+          justlogin: false

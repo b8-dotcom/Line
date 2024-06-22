@@ -42,7 +42,7 @@ pyyaml = "==3.13"
 regex = "==2024.5.15"
 requests = "==2.31.0"
 six = "==1.16.0"
-sqlalchemy = "==1.2.19"
+sqlalchemy = "==1.2.19"  # 保留這個
 tqdm = "==4.66.4"
 typing-extensions = "==4.12.2"
 urllib3 = "==2.2.2"

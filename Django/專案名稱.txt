@@ -1,0 +1,4 @@
+django-admin startproject your_projec_line
+
+django-admin startproject myproject
+http://127.0.0.1:8000/   這是預設的 Django 開發伺服器地址。

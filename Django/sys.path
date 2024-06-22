@@ -1,0 +1,2 @@
+import sys
+sys.path.append(r'C:\Users\88693\Documents\python\line\Django\your_projec_line')
