@@ -2,6 +2,10 @@ web: python app.py
 web: gunicorn yourapp.wsgi
 web: node index.js
 web: gunicorn app:app
+web: gunicorn your_project_line.wsgi --log-file -
+web: gunicorn your_project_line.wsgi --log-file -
+
+
 
 
 
