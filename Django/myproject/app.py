@@ -1,23 +1,23 @@
 # -*- coding: utf-8 -*-
-import sys
-sys.path.append(r'C:\Users\88693\Documents\python\line\Django\your_projec_line')
 import os
 import django
+import collections.abc  # 正確導入 Hashable
 from flask import Flask, request, abort
-from linebot import LineBotApi, WebhookHandler
+from linebot import LineBotApi
+from linebot.v3.webhook import WebhookHandler
 from linebot.models import MessageEvent, TextMessage, TextSendMessage
-from linebot.exceptions import InvalidSignatureError
+from linebot.exceptions import InvalidSignatureError, LineBotApiError
 from chatterbot import ChatBot
-from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import ListTrainer
+import nltk
+from nltk.corpus import stopwords, wordnet
 import logging
 import time
+from transformers import GPT2LMHeadModel, GPT2Tokenizer
 
-# 设置 Django 环境变量
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_projec_line.settings')
+# 設置 Django 環境變量
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_projec_line.settings')  # 替換成你的實際 Django 項目名稱
 django.setup()
-
-# 导入并配置 ChatBot
-from chatterbot.storage.django_storage import DjangoStorageAdapter  # 引入 DjangoStorageAdapter
 
 # LINE 設定
 LINE_CHANNEL_ACCESS_TOKEN = '3N+hwqKvNK8MUNVrV4EeboNrD/1liUCyq30MZ241s1BDNKRie2hMywwMBquG72uqVFdQZqL+/TcqsO5sD2De5abt841S4Fb79Y0khqBCIe1jWsVW/JTxlabWkjoYdFfa8zcxOuPhJnjVIb3SJ+fhGwdB04t89/1O/w1cDnyilFU='
@@ -27,19 +27,35 @@ app = Flask(__name__)
 line_bot_api = LineBotApi(LINE_CHANNEL_ACCESS_TOKEN)
 handler = WebhookHandler(LINE_CHANNEL_SECRET)
 
-# 設定日誌
+# 設置日誌
 logging.basicConfig(level=logging.INFO)
 
-# 建立 ChatterBot 聊天機器人
+# 創建 ChatterBot 聊天機器人
 chatbot = ChatBot(
     'LearningBot',
     storage_adapter='chatterbot.storage.django_storage.DjangoStorageAdapter',  # 使用 DjangoStorageAdapter
-    django_app_name='your_projec_line'  # 替換成您的 Django 應用程式名稱
+    database_uri='sqlite:///db.sqlite3',  # 替換成您的 Django 數據庫 URI
+    read_only=False  # 設置為 False，以便訓練機器人
 )
 
-# 訓練繁體中文基本語料庫
-trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train('chatterbot.corpus.chinese')  # 訓練繁體中文基本語料庫
+# 訓練 NLTK 語料庫
+trainer = ListTrainer(chatbot)
+nltk.download('punkt')
+nltk.download('wordnet')
+nltk.download('stopwords')
+
+conversation = [
+    "你好",
+    "你好,有什麼我可以幫到您的嗎?",
+    "再見",
+    "再見,祝您有個美好的一天!",
+]
+
+trainer.train(conversation)
+
+# 載入 GPT-2 模型
+gpt2_model = GPT2LMHeadModel.from_pretrained('gpt2')
+gpt2_tokenizer = GPT2Tokenizer.from_pretrained('gpt2')
 
 @app.route("/callback", methods=['POST'])
 def callback():
@@ -64,22 +80,30 @@ def handle_message(event):
 
     try:
         if user_message == '你好':
-            reply_message = '你好，有甚麼地方可以為您服務呢?'
+            reply_message = '你好,有什麼我可以幫到您的嗎?'
         elif user_message == '再見':
-            reply_message = '再見，祝您有個美好的一天！'
+            reply_message = '再見,祝您有個美好的一天!'
         else:
-            bot_response = chatbot.get_response(user_message)
-            reply_message = str(bot_response)
+            # 使用 GPT-2 生成回應
+            input_ids = gpt2_tokenizer.encode(user_message, return_tensors='pt')
+            output = gpt2_model.generate(input_ids, max_length=50, num_return_sequences=1, do_sample=True, top_k=50, top_p=0.95, num_beams=1)
+            reply_message = gpt2_tokenizer.decode(output[0], skip_special_tokens=True)
 
         line_bot_api.reply_message(
             event.reply_token,
             TextSendMessage(text=reply_message)
         )
+    except LineBotApiError as e:
+        app.logger.error(f"Line Bot API error: {e.status_code} {e.error.message}")
+        line_bot_api.reply_message(
+            event.reply_token,
+            TextSendMessage(text="對不起,我遇到了一些問題,請稍後再試。")
+        )
     except Exception as e:
         app.logger.error(f"Error handling message: {e}")
         line_bot_api.reply_message(
             event.reply_token,
-            TextSendMessage(text="對不起，我遇到了一些問題，請稍後再試。")
+            TextSendMessage(text="對不起,我遇到了一些問題,請稍後再試。")
         )
     finally:
         end_time = time.perf_counter()  # 結束計時

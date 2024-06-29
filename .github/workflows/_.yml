@@ -3,7 +3,7 @@ name: Deploy to Heroku
 on:
   push:
     branches:
-      - main  # 修改為您要部署的分支名稱，例如 main 或 master
+      - main  # 要部署的分支名稱，例如 main 或 master
 
 jobs:
   deploy:
@@ -22,7 +22,7 @@ jobs:
         with:
           heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
           heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-          branch: main  # 修改為您要部署的分支名稱，例如 main 或 master
+          branch: main  # 要部署的分支名稱，例如 main 或 master
           dontuseforce: false  # 是否使用 --force 強制推送，建議設置為 false
           dontautocreate: false
           usedocker: false

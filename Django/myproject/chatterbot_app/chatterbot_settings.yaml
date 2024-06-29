@@ -1,0 +1,129 @@
+﻿secret_key: 'django-insecure-@^l38*7mq8@d0i@$6=^v==&y8)t#pdw7_nbvva1542u8&4b0ra'
+debug: true
+allowed_hosts:
+  - localhost
+  - 127.0.0.1
+  - "[::1]"
+
+chatterbot:
+  name:
+    zh: 林家水果行
+    en: Fruit Shop Lin
+    ja: 林家フルーツ店
+    ko: 린 과일 가게
+  logic_adapters:
+    - import_path: chatterbot.logic.BestMatch
+      default_response:
+        zh: 對不起，我無法理解您的意思。
+        en: I apologize, I didn't quite understand your request.
+        ja: 申し訳ありませんが、私はあなたの要求を理解できませんでした。
+        ko: 죄송합니다, 요청을 이해하지 못했습니다.
+      maximum_similarity_threshold: 0.9
+  international_data:
+    - - 你好
+      - 您好，有什麼可以幫助您呢？
+      - Hello, how can I assist you today?
+      - こんにちは、今日はどのようにお手伝いできますか？
+      - 안녕하세요, 오늘 어떻게 도와 드릴까요?
+    - - 再見
+      - 再見，祝您有美好的一天。
+      - Goodbye, have a wonderful day.
+      - さようなら、良い一日をお過ごしください。
+      - 안녕히 가세요, 즐거운 하루 되세요。
+    - - 可以幫我找到某種水果嗎？
+      - 當然，請告訴我您需要什麼水果。
+      - Certainly, please tell me what fruit you're looking for.
+      - もちろんです、どんなフルーツをお探しですか？
+      - 물론이죠, 원하시는 과일을 말씀해주세요.
+    - - 今天有什麼特價水果嗎？
+      - 今天我們的特價水果有蘋果和香蕉。
+      - Today, our discounted fruits include apples and bananas.
+      - 今日の特売品はリンゴとバナナです。
+      - 오늘은 사과와 바나나가 할인되고 있습니다.
+    - - 您有橙子嗎？
+      - 是的，我們有新鮮的橙子。
+      - Yes, we have fresh oranges available.
+      - はい、新鮮なオレンジがあります。
+      - 네, 신선한 오렌지를 판매하고 있습니다。
+    - - 一台斤蘋果多少錢？
+      - 一台斤蘋果是100元。
+      - Apples are 100 NT dollars per catty.
+      - リンゴの価格は1キロあたり100元です。
+      - 사과는 1킬로그램 당 100 NT 달러입니다.
+    - - 你們有提供送貨服務嗎？
+      - 是的，我們提供送貨服務。
+      - Yes, we provide delivery service.
+      - はい、配送サービスを提供しています。
+      - 네, 배송 서비스를 제공하고 있습니다.
+    - - 送貨費用多少？
+      - 送貨費用根據距離計算，起價50元。
+      - The delivery fee is calculated based on distance, starting at 50 NT dollars.
+      - 配送料金は距離に基づいて計算され、50元からです。
+      - 배송 비용은 거리에 따라 계산되며, 최소 50 NT 달러부터 시작합니다.
+    - - 可以接受ATM轉帳或LINE Pay轉帳付款嗎？
+      - 是的，我們接受ATM轉帳或LINE Pay付款。
+      - Yes, we accept ATM transfer or LINE Pay for payment.
+      - はい、ATM送金やLINE Payでの支払いが可能です。
+      - 네, ATM 이체 또는 LINE Pay로 결제할 수 있습니다.
+    - - 請問你們的產地在甚麼地方？
+      - 我們的產地在嘉義縣竹崎鄉高山裡。
+      - Our products come from Gaoshan, Jhuci Township, Chiayi County.
+      - 当社の製品は台湾嘉義県竹崎郷の高山から来ています。
+      - 저희 제품은 대만 지야이 현 주지 구의 고산에서 왔습니다.
+    - - 有機水果嗎？
+      - 是的，我們提供多種有機水果。
+      - Yes, we offer a variety of organic fruits.
+      - はい、さまざまな有機フルーツを提供しています。
+      - 네, 다양한 유기농 과일을 제공하고 있습니다.
+    - - 有沒有打折的水果？
+      - 今天打折的水果有葡萄和草莓。
+      - Today, discounted fruits include grapes and strawberries.
+      - 今日は割引対象のフルーツにはぶどうとイチゴが含まれています。
+      - 오늘 할인된 과일로는 포도와 딸기가 있습니다。
+    - - 可以推薦一些當季水果嗎？
+      - 當然，目前的當季水果有芒果和西瓜。
+      - Certainly, current seasonal fruits include mangoes and watermelons.
+      - もちろん、現在の季節のフルーツにはマンゴーとスイカが含まれています。
+      - 당연히, 현재 계절 과일로는 망고와 수박이 있습니다.
+    - - 需要提前訂購嗎？
+      - 如果您需要大量購買，建議提前訂購。
+      - If you need to purchase in bulk, we recommend placing an order in advance.
+      - 大量の購入が必要な場合は、事前にご予約いただくことをお勧めします。
+      - 대량 구매가 필요하면 사전 예약을 권장합니다.
+    - - 可以退貨嗎？
+      - 如果水果有品質問題，我們會提供退貨服務。
+      - We offer returns for items with quality issues.
+      - 製品に品質問題がある場合は返品を承ります。
+      - 제품의 품질 문제가 있을 경우 반품 서비스를 제공합니다.
+    - - 有沒有禮品籃？
+      - 不好意思，我們無法提供此服務。
+      - I'm sorry, we do not provide this service.
+      - 申し訳ありませんが、このサービスは提供しておりません。
+      - 죄송합니다, 이 서비스는 제공하지 않습니다.
+    - - 你們的電話號碼是什麼？
+      - 我們的聯絡電話是0903936679，或者可以通過LINE免費通話聯絡我們。
+      - Our contact phone number is 0903936679, or you can reach us via Line call for free.
+      - 当社の連絡先電話番号は0903936679です。または無料のLINE通話でお問い合わせいただけます。
+      - 저희의 연락처 전화번호는 0903936679 입니다. 또는 LINE 을 통한 무료 전화로 문의할 수 있습니다。
+  logic_adapters:
+    - chatterbot.logic.MathematicalEvaluation
+    - chatterbot.logic.TimeLogicAdapter
+    - chatterbot.logic.BestMatch
+
+trainer: chatterbot.trainers.ChatterBotCorpusTrainer
+
+# List of datasets to be loaded into the database
+training:
+  - data: chatterbot.corpus.international
+
+# Storage settings
+storage:
+  mongo_database_uri: null
+  database_uri: null
+  database: null
+  drop_create_database: false
+
+# Additional settings for LINE Bot
+line_bot:
+  channel_access_token: '3N+hwqKvNK8MUNVrV4EeboNrD/1liUCyq30MZ241s1BDNKRie2hMywwMBquG72uqVFdQZqL+/TcqsO5sD2De5abt841S4Fb79Y0khqBCIe1jWsVW/JTxlabWkjoYdFfa8zcxOuPhJnjVIb3SJ+fhGwdB04t89/1O/w1cDnyilFU='
+  channel_secret: '93a8d88c1459c647e0a80e3ea21d95b8'

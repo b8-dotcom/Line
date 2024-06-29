@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot Demo</title>
+    <style>
+        /* 基本的 CSS 樣式 */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .chat-container {
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            overflow-y: scroll;
+            max-height: 300px;
+        }
+
+        .user-message {
+            text-align: right;
+            color: #0a7bff;
+        }
+
+        .bot-message {
+            text-align: left;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h1>ChatBot Demo</h1>
+
+    <div class="chat-container" id="chat-container">
+        <!-- 聊天消息將在這裡顯示 -->
+    </div>
+
+    <form id="message-form">
+        <input type="text" id="user-message" placeholder="輸入你的消息...">
+        <button type="submit">發送</button>
+    </form>
+
+    <script>
+        // JavaScript 代碼處理 AJAX 請求和顯示聊天消息
+        const form = document.getElementById('message-form');
+        const chatContainer = document.getElementById('chat-container');
+
+        form.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            const userMessage = document.getElementById('user-message').value.trim();
+            if (userMessage === '') return;
+
+            // 發送 AJAX 請求獲取機器人的回應
+            const response = await fetch(`/get_response/?message=${encodeURIComponent(userMessage)}`);
+            const data = await response.json();
+            const botMessage = `<div class="bot-message"><strong>機器人:</strong> ${data.response}</div>`;
+            chatContainer.innerHTML += botMessage;
+
+            // 清空輸入框
+            document.getElementById('user-message').value = '';
+
+            // 滾動到底部
+            chatContainer.scrollTop = chatContainer.scrollHeight;
+        });
+    </script>
+</body>
+</html>

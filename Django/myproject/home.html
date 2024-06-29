@@ -1,0 +1,8 @@
+﻿<!-- home.html -->
+<h1>聊天機器人</h1>
+
+<div>
+    {% for statement in bot.get_response_history %}
+    <p>{{ statement }}</p>
+    {% endfor %}
+</div>
