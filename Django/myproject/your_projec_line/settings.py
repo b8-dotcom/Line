@@ -27,8 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'your_project_line',  # 確保你的應用程式名稱正確
-    'django_chatterbot',
-    'chatterbot_app.apps.ChatterbotAppConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,5 +75,3 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-CHATTERBOT = chatterbot_settings.get('chatterbot', {})

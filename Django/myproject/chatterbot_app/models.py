@@ -1,8 +1,4 @@
-from django.db import models
-
-# Create your models here.
-
-# åœ¨ chatterbot_app/models.py æ–‡ä»¶ä¸­å®šç¾©æ¨¡åž‹
+# ¦b your_app/models.py ¤å¥ó¤¤©w¸q¼Ò«¬
 from django.db import models
 
 class Message(models.Model):
@@ -10,3 +6,5 @@ class Message(models.Model):
     text = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.text
