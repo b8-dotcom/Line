@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'your_project_line',  # 確保你的應用程式名稱正確
+    'chatterbot_app',  # 確保這裡列出了您的應用程序名稱
 ]
 
 MIDDLEWARE = [

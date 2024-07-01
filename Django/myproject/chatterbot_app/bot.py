@@ -6,20 +6,23 @@ Created on Mon Jun 24 17:32:52 2024
 """
 
 # chatbot/bot.py
-from chatterbot import ChatBot
 
-# Create a new chat bot named 'FruitShopBot'
-bot = ChatBot('FruitShopBot')
+# Assuming you have a Django model for your chatbot interactions
+from your_project_line.models import ChatInteraction  # Adjust this import based on your actual model
 
-# Train the chat bot with some example statements
-from chatterbot.trainers import ListTrainer
+# Create a function or class to handle chat interactions
+def respond_to_message(message):
+    # Implement logic to respond based on incoming message
+    # Example logic:
+    if message == '你好':
+        return '您好，有什麼可以為您效勞的呢?'
+    elif message == '再見':
+        return '再見，祝您有美好的一天。'
+    else:
+        return '對不起，我不太明白您在說什麼。'
 
-trainer = ListTrainer(bot)
-
-trainer.train([
-    '你好',
-    '您好，有什麼可以為您效勞的呢?',
-    '再見',
-    '再見，祝您有美好的一天。',
-    # Add more training data here
-])
+# Example usage:
+if __name__ == '__main__':
+    message = '你好'  # Replace with actual incoming message
+    response = respond_to_message(message)
+    print(response)

@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Quick-start development settings - unsuitable for production
@@ -35,7 +34,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'chatterbot',  # 添加 ChatterBot 應用程式
 ]
 
 MIDDLEWARE = [
@@ -118,17 +116,3 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-# ChatterBot settings
-CHATTERBOT = {
-    'name': 'MyBot',
-    'storage_adapter': 'chatterbot.storage.django_storage.DjangoStorageAdapter',
-    'logic_adapters': [
-        {
-            'import_path': 'chatterbot.logic.BestMatch',
-            'default_response': '對不起，我不太明白您在說什麼。',
-            'maximum_similarity_threshold': 0.90
-        }
-    ],
-    'database_uri': 'sqlite:///' + str(BASE_DIR / 'db.sqlite3'),
-}

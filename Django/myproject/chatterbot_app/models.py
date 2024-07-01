@@ -1,4 +1,5 @@
-# 在 your_app/models.py 文件中定義模型
+# chatterbot_app/models.py
+
 from django.db import models
 
 class Message(models.Model):
@@ -8,3 +9,6 @@ class Message(models.Model):
 
     def __str__(self):
         return self.text
+
+    class Meta:
+        app_label = 'chatterbot_app'
