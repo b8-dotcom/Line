@@ -1,0 +1,3 @@
+Host github.com
+  IdentityFile "C:/Users/88693/Documents/python/line/github.pem"
+  b8-dotcom your_git_username
