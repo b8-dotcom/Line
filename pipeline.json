@@ -1,0 +1,90 @@
+{
+  "pipeline": {
+    "name": "MyPipeline",
+    "roleArn": "arn:aws:iam::ACCOUNT_ID:role/SERVICE_ROLE",
+    "artifactStore": {
+      "type": "S3",
+      "location": "my-pipeline-artifacts"
+    },
+    "stages": [
+      {
+        "name": "Source",
+        "actions": [
+          {
+            "name": "Source",
+            "actionTypeId": {
+              "category": "Source",
+              "owner": "ThirdParty",
+              "provider": "GitHub",
+              "version": "1"
+            },
+            "outputArtifacts": [
+              {
+                "name": "SourceArtifact"
+              }
+            ],
+            "configuration": {
+              "Owner": "GITHUB_OWNER",
+              "Repo": "GITHUB_REPO",
+              "Branch": "main",
+              "OAuthToken": "GITHUB_OAUTH_TOKEN"
+            },
+            "runOrder": 1
+          }
+        ]
+      },
+      {
+        "name": "Build",
+        "actions": [
+          {
+            "name": "Build",
+            "actionTypeId": {
+              "category": "Build",
+              "owner": "AWS",
+              "provider": "CodeBuild",
+              "version": "1"
+            },
+            "inputArtifacts": [
+              {
+                "name": "SourceArtifact"
+              }
+            ],
+            "outputArtifacts": [
+              {
+                "name": "BuildArtifact"
+              }
+            ],
+            "configuration": {
+              "ProjectName": "YOUR_CODEBUILD_PROJECT"
+            },
+            "runOrder": 1
+          }
+        ]
+      },
+      {
+        "name": "Deploy",
+        "actions": [
+          {
+            "name": "Deploy",
+            "actionTypeId": {
+              "category": "Deploy",
+              "owner": "AWS",
+              "provider": "ElasticBeanstalk",
+              "version": "1"
+            },
+            "inputArtifacts": [
+              {
+                "name": "BuildArtifact"
+              }
+            ],
+            "configuration": {
+              "ApplicationName": "YOUR_ELASTIC_BEANSTALK_APPLICATION",
+              "EnvironmentName": "YOUR_ELASTIC_BEANSTALK_ENVIRONMENT"
+            },
+            "runOrder": 1
+          }
+        ]
+      }
+    ]
+  }
+}
