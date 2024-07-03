@@ -1,4 +1,4 @@
-name: Deploy to Heroku
+name: Deploy Django project to AWS EC2
 
 on:
   push:
@@ -10,29 +10,32 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14'
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.11'
 
-      - name: Install Node.js dependencies
-        run: npm install
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
 
-      - name: Set up Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.8'
-
-      - name: Install Python dependencies
-        run: pip install -r requirements.txt
-
-      - name: Deploy to Heroku
-        env:
-          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
-          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
-        run: |
-          git remote add heroku https://git.heroku.com/${{ secrets.HEROKU_APP_NAME }}.git
-          git push heroku main
+    - name: Deploy to EC2
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_REGION: 'your-aws-region'
+        EC2_INSTANCE_ID: 'your-ec2-instance-id'
+      run: |
+        sudo apt-get install -y awscli
+        aws ec2 start-instances --instance-ids $EC2_INSTANCE_ID
+        ssh -o StrictHostKeyChecking=no -i "your-key-pair.pem" ubuntu@your-ec2-ip-address << 'EOF'
+          cd /home/ubuntu/yourrepository
+          git pull origin main
+          source venv/bin/activate
+          pip install -r requirements.txt
+          sudo systemctl restart yourproject
+        EOF
